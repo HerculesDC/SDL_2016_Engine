@@ -2,6 +2,9 @@
 #ifndef ENGINE_HPP
 #define ENGINE_HPP
 
+class GameObject;
+
+struct SDL_Surface;
 struct SDL_Renderer;
 template <typename T> class SingletonHolder;
 class Engine {
@@ -24,6 +27,9 @@ class Engine {
 		bool m_bIsInit;
 		bool m_bIsRun;
 		unsigned int m_iStart, m_iEnd, m_iDelta, m_iFPS;
+
+		//REMOVE LATER:
+		GameObject* go_test;
 };
 
 #endif
