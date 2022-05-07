@@ -4,6 +4,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 16.0.31727.386
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SDL_2016_Engine", "SDL_2016_Engine\SDL_2016_Engine.vcxproj", "{8E2835DB-A1BD-464C-A973-57E9D77CD4B8}"
+	ProjectSection(ProjectDependencies) = postProject
+		{EA47378E-3CAC-47B2-BC56-8C9A42A936F6} = {EA47378E-3CAC-47B2-BC56-8C9A42A936F6}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LuaModule", "LuaModule\LuaModule.vcxproj", "{EA47378E-3CAC-47B2-BC56-8C9A42A936F6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +26,14 @@ Global
 		{8E2835DB-A1BD-464C-A973-57E9D77CD4B8}.Release|x64.Build.0 = Release|x64
 		{8E2835DB-A1BD-464C-A973-57E9D77CD4B8}.Release|x86.ActiveCfg = Release|Win32
 		{8E2835DB-A1BD-464C-A973-57E9D77CD4B8}.Release|x86.Build.0 = Release|Win32
+		{EA47378E-3CAC-47B2-BC56-8C9A42A936F6}.Debug|x64.ActiveCfg = Debug|x64
+		{EA47378E-3CAC-47B2-BC56-8C9A42A936F6}.Debug|x64.Build.0 = Debug|x64
+		{EA47378E-3CAC-47B2-BC56-8C9A42A936F6}.Debug|x86.ActiveCfg = Debug|Win32
+		{EA47378E-3CAC-47B2-BC56-8C9A42A936F6}.Debug|x86.Build.0 = Debug|Win32
+		{EA47378E-3CAC-47B2-BC56-8C9A42A936F6}.Release|x64.ActiveCfg = Release|x64
+		{EA47378E-3CAC-47B2-BC56-8C9A42A936F6}.Release|x64.Build.0 = Release|x64
+		{EA47378E-3CAC-47B2-BC56-8C9A42A936F6}.Release|x86.ActiveCfg = Release|Win32
+		{EA47378E-3CAC-47B2-BC56-8C9A42A936F6}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

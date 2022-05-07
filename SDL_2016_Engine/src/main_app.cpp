@@ -1,7 +1,5 @@
 #define SDL_MAIN_HANDLED
 
-#include "../include/SDL/SDL.h"
-
 #include "headers/SingletonHolder.hpp"
 #include "headers/Engine.hpp"
 

@@ -13,7 +13,7 @@ GameObject::GameObject(unsigned int id, SDL_Surface* surf = nullptr):
 }
 
 void GameObject::init() {
-	m_rect.x = 250;
+	m_rect.x = 150;
 	m_rect.y = 100;
 }
 

@@ -9,18 +9,20 @@ struct SDL_Renderer;
 template <typename T> class SingletonHolder;
 class Engine {
 	public:
-		compl Engine();
 		void run();
 	private:
 		friend class SingletonHolder<Engine>;
 		Engine();
+		Engine(const Engine&) = delete;
+		Engine& operator=(Engine other) = delete;
+		compl Engine();
 
 		void init();
 		void wake();
 		void sleep();
 		void processEvents();
-		void update(unsigned int delta_ms);
-		void render(SDL_Renderer* renderTarget);
+		void update(unsigned int);
+		void render(SDL_Renderer*);
 		void quit();
 
 	private:
