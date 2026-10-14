@@ -4,7 +4,7 @@
 #include "headers/Engine.hpp"
 #include "headers/Window.hpp"
 #include "headers/Renderer.hpp"
-#include "headers/GameObject.hpp"
+#include "headers/Scene.hpp"
 
 #include "../include/SDL/SDL.h"
 
@@ -15,10 +15,10 @@ Engine::Engine(): m_bIsInit(false), m_bIsRun(false),
 				  m_iStart(0), m_iEnd(0), m_iDelta(0)
 {
 	m_iFPS = (int)(1000.0 / 60);
+	m_vScenes;
 }
 
 Engine::compl Engine() {
-	delete go_test;
 	IMG_Quit();
 	SDL_Quit();
 }
@@ -35,13 +35,16 @@ void Engine::run() {
 	quit();
 }
 
+
+#include "./headers/SceneFactory.hpp"
 void Engine::init() {
 	SingletonHolder<Window>::sInstance->getWindow();
+
+	m_vScenes.push_back(SingletonHolder<SceneFactory>::sInstance->createScene());
+	m_vScenes.back()->init();
 	
 	//MOVE SOMEWHERE ELSE LATER
 	IMG_Init(IMG_INIT_JPG|IMG_INIT_PNG);
-	go_test = new GameObject(0, nullptr);
-	go_test->init();
 
 	m_bIsInit = true;
 	m_bIsRun = true;
@@ -70,13 +73,26 @@ void Engine::processEvents() {
 	}
 }
 
-void Engine::update(unsigned int delta_ms) {}
+void Engine::update(unsigned int delta_ms) {
+	if (!m_vScenes.empty()) {
+		for (auto scene = m_vScenes.begin(); scene != m_vScenes.end(); ++scene) {
+			if ((*scene)->getState() == Scene::SceneStates::RUNNING) {
+				(*scene)->update(delta_ms);
+			}
+		}
+	}
+}
 
 void Engine::render(SDL_Renderer* renderTarget) {
-	SDL_SetRenderDrawColor(renderTarget, 50, 0, 128, 255);
-	SDL_RenderClear(renderTarget);
-	go_test->render(renderTarget);
-	SDL_RenderPresent(renderTarget);
+
+	if (!m_vScenes.empty()) {
+		/*for (auto scene = m_vScenes.begin(); scene != m_vScenes.end(); ++scene) {
+			if (((*scene).getState() & (Scene::SceneStates::RUNNING | Scene::SceneStates::PAUSED))!=0) { //problem in this logic. Check!
+				(*scene).render(renderTarget);
+			}
+		}*/
+		m_vScenes.back()->render(renderTarget);
+	}
 }
 
 void Engine::quit() {

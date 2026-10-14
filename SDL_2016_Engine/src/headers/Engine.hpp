@@ -1,8 +1,10 @@
 #pragma once
 #ifndef ENGINE_HPP
 #define ENGINE_HPP
+#include <memory>
+#include <vector>
 
-class GameObject;
+class Scene;
 
 struct SDL_Surface;
 struct SDL_Renderer;
@@ -30,8 +32,7 @@ class Engine {
 		bool m_bIsRun;
 		unsigned int m_iStart, m_iEnd, m_iDelta, m_iFPS;
 
-		//REMOVE LATER:
-		GameObject* go_test;
+		std::vector<std::unique_ptr<Scene>> m_vScenes;
 };
 
 #endif

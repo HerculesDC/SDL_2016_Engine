@@ -1,13 +1,21 @@
 #ifndef COMPONENTFACTORY_HPP
 #define COMPONENTFACTORY_HPP
+#include <memory>
+#include <string>
+#include <map>
 
-template <typename T> class SingletonHolder;
+//Forward declarations
+template <class T> class SingletonHolder;
 class Component;
-template <class T>
+
+//Typedefs
+typedef Component* (*factoryMethod)(void);
+typedef unsigned int ComponentTypeID;
+
 class ComponentFactory{
 	public:
-		static T* createDefaultComponent(const char*);
-
+		std::shared_ptr<Component> createDefaultSubcomponent(std::string);
+		
 	private:
 		friend class SingletonHolder<ComponentFactory>;
 		ComponentFactory();
@@ -16,7 +24,12 @@ class ComponentFactory{
 		compl ComponentFactory();
 
 	private:
-		static unsigned long long int ms_currentComponentID;
+		bool registerFactory(std::string, factoryMethod);
+		bool isFactoryRegistered(std::string);
+	
+	private:
+		static unsigned long int ms_currentComponentID;
+		static ComponentTypeID ms_componentTypeID;
+		std::map <std::string, factoryMethod> m_componentFactoryMap;
 };
-
 #endif
